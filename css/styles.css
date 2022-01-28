@@ -78,6 +78,7 @@ a {
 }
 .section-header {
   border-bottom: 1px solid #ececec;
+
   /* outline: 1px solid tomato; */
   /* display: inline-flex; */
   /* margin-top: 24px;
@@ -100,6 +101,7 @@ a {
 
 .header {
   /* outline: solid 1px tomato; */
+
   display: flex;
   font-weight: 500;
   font-size: 14px;
@@ -120,7 +122,7 @@ a {
 }
 .header-link {
   /* outline: 1px solid tomato; */
-  /* display: block; */
+  /* position: relative; */
   display: flex;
   padding-top: 32px;
   padding-bottom: 32px;
@@ -134,16 +136,18 @@ a {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition: 250ms;
 }
-.header-item::after {
-  opacity: 0;
-  content: '';
-  display: flex;
-  height: 4px;
-  background: #2196f3;
-  border-radius: 2px;
+.current {
+  position: relative;
 }
-.current .header-item::after {
-  opacity: 1;
+.header-link.current::after {
+  content: '';
+  height: 4px;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: var(--accent-color);
+  border-radius: 2px;
 }
 
 .auth-nav {
@@ -221,6 +225,7 @@ a {
 }
 
 /* -----------Hero -------------*/
+
 .section-hero {
   max-width: 1600px;
   height: 600px;
@@ -281,8 +286,30 @@ a {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition: 250ms;
 }
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.modal {
+  position: absolute;
+  width: 528px;
+  height: 581px;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
 
-/* Main  */
+  background-color: white;
+}
+
+/* ------------Main -------------- */
 
 .section {
   padding-top: 94px;
@@ -741,15 +768,78 @@ a {
   transition: 250ms;
 }
 
-/* .gallery-item:nth-child(3n) {
-  margin-right: 0px;
+.gallery-item-link:hover .gallery-animation {
+  opacity: 1;
+  top: 0;
+  left: 0;
+  transform: translateX(0);
+  transition: 250ms;
 }
-.gallery-item:nth-last-child(-n + 3) {
-  margin-bottom: 0px;
-} */
+
 .gallery-content {
   padding-top: 20px;
   padding-right: 24px;
   padding-bottom: 20px;
   padding-left: 24px;
 }
+.gallery-thumb {
+  display: flex;
+  position: relative;
+  width: 370px;
+  overflow: hidden;
+}
+.gallery-animation {
+  display: inline-block;
+  position: absolute;
+  width: 370px;
+  opacity: 0;
+
+  padding: 63px 24px;
+  top: 100%;
+  left: 100%;
+
+  font-size: 18px;
+  line-height: 1.56;
+  letter-spacing: 0.03em;
+  color: var(--second-title-text);
+  background-color: rgba(33, 150, 243, 0.9);
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition: 250ms;
+  transform: translateX(-100%);
+}
+
+/* -----------Вариант 2 оверлея в портфолио----- */
+
+/* .gallery-item-link {
+  position: relative;
+} */
+
+/* .gallery-thumb::before {
+  display: inline-block;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(33, 150, 243, 0.9);
+  opacity: 0;
+  transition: 250ms;
+}
+.gallery-thumb:hover::before {
+  opacity: 1;
+}
+.gallery-thumb:hover .gallery-animation {
+  opacity: 1;
+} */
+/* .gallery-animation {
+  display: flex;
+  position: absolute;
+  padding: 63px 24px;
+  top: 0;
+  left: 0;
+  font-size: 18px;
+  line-height: 1.56;
+  opacity: 0;
+  letter-spacing: 0.03em;
+  transition: 250ms;
+  color: var(--second-title-text);
+} */
