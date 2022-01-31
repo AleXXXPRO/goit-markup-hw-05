@@ -307,6 +307,7 @@ a {
 .backdrop.is-hidden {
   opacity: 0;
   pointer-events: none;
+  visibility: hidden;
 }
 .backdrop.is-hidden .modal {
   transform: translate(-50%, -50%) scale(0.9);
@@ -325,19 +326,23 @@ a {
   background-color: white;
 }
 .btn-close {
+  /* position: absolute; */
   color: #000000;
   background-color: #fff;
   border: none;
 }
 .btn-close-main {
-  border: none;
+  width: 100%;
   padding: 0;
   margin: 0;
+  border: none;
+  background-color: #fff;
 }
 .circle-close-btn {
+  position: absolute;
   display: flex;
-  margin-top: 8px;
-  margin-right: 8px;
+  top: 8px;
+  right: 8px;
   justify-content: center;
   align-items: center;
   width: 30px;
